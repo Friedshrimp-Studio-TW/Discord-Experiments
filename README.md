@@ -4,4 +4,4 @@
 
 ---
 
-> [discordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments.js/plugins/DiscordExperiments.js) V 1.0.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.0.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
