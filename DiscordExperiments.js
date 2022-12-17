@@ -26,5 +26,13 @@ module.exports = class discordExperiments {
     nodes.find((x) => x.name == "DeveloperExperimentStore").actionHandler["CONNECTION_OPEN"]();
     usermod.exports.default.__proto__.getCurrentUser = oldGetUser;
   }
-  stop() {}
+  stop() {
+    BdApi.showNotice("You need to reload Discord for disabling Experiments", {
+      type: "warning",
+      buttons: [{
+        label: "Reload Discord",
+        onClick: () => location.reload()
+      }]
+  });
+  }
 };
