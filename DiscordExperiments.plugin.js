@@ -1,9 +1,12 @@
 /**
  * @name DiscordExperiments
- * @author VincentX0905
+ * @author VincentX0905(炸蝦)
  * @description Open Discord Experiments function
  * @version V1.0.0
-*/
+ * @authorId 909608773927202906
+ * @source https://github.com/vincentwang0905/DiscordExperiments
+ * @updateUrl https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js
+ */
 
 module.exports = class discordExperiments {
   start() {
