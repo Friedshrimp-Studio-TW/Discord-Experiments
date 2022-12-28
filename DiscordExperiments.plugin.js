@@ -4,6 +4,9 @@
  * @description Open Discord Experiments function
  * @version V1.0.0
  * @authorId 909608773927202906
+ * @donate https://donate.fsbot.tk
+ * @invite Pw8z4YkBFB
+ * @website https://github.com/vincentwang0905/DiscordExperiments
  * @source https://github.com/vincentwang0905/DiscordExperiments
  * @updateUrl https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js
  */
@@ -29,6 +32,7 @@ module.exports = class discordExperiments {
     nodes.find((x) => x.name == "DeveloperExperimentStore").actionHandler["CONNECTION_OPEN"]();
     usermod.exports.default.__proto__.getCurrentUser = oldGetUser;
   }
+
   stop() {
     BdApi.showNotice("You need to reload Discord for disabling Experiments", {
       type: "warning",
@@ -36,6 +40,6 @@ module.exports = class discordExperiments {
         label: "Reload Discord",
         onClick: () => location.reload()
       }]
-  });
+    });
   }
 };
