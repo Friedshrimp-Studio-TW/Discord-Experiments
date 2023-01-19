@@ -2,7 +2,7 @@
  * @name DiscordExperiments
  * @author VincentX0905(炸蝦)
  * @description Open Discord Experiments function
- * @version V1.0.0
+ * @version V1.1.0
  * @authorId 909608773927202906
  * @donate https://donate.fsbot.tk
  * @invite Pw8z4YkBFB
@@ -27,10 +27,10 @@ module.exports = class discordExperiments {
     try {
       nodes.find((x) => x.name == "ExperimentStore").actionHandler["OVERLAY_INITIALIZE"]({ user: { flags: 1 } });
     } catch (e) {}
-    let oldGetUser = usermod.exports.default.__proto__.getCurrentUser;
-    usermod.exports.default.__proto__.getCurrentUser = () => ({ isStaff: () => true });
+    let oldGetUser = usermod.exports.default.__proto__.getNonImpersonatedCurrentUser;
+    usermod.exports.default.__proto__.getNonImpersonatedCurrentUser = () => ({ isStaff: () => true });
     nodes.find((x) => x.name == "DeveloperExperimentStore").actionHandler["CONNECTION_OPEN"]();
-    usermod.exports.default.__proto__.getCurrentUser = oldGetUser;
+    usermod.exports.default.__proto__.getNonImpersonatedCurrentUser = oldGetUser;
   }
 
   stop() {
