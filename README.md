@@ -4,4 +4,13 @@
 
 ---
 
-> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.0.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.1.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+
+---
+
+<h1 align="center">更新日誌 | Updata log</h1>
+<b>V1.1.0</b> ---> 修復<a href="https://github.com/Discord-Datamining/Discord-Datamining/commit/0e742cceaba535624633bd578f754478a2855cdc">Build 168435</a>更新導致插件失效</br>
+<b>V1.1.0</b> ---> Fix<a href="https://github.com/Discord-Datamining/Discord-Datamining/commit/0e742cceaba535624633bd578f754478a2855cdc">Build 168435</a>update caused the plugin to fail</br>
+</br>
+<b>V1.0.0</b> ---> 未知</br>
+<b>V1.0.0</b> ---> Unknow
