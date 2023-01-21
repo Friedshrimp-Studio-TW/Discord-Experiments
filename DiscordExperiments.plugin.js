@@ -27,10 +27,10 @@ module.exports = class discordExperiments {
     try {
       nodes.find((x) => x.name == "ExperimentStore").actionHandler["OVERLAY_INITIALIZE"]({ user: { flags: 1 } });
     } catch (e) {}
-    let oldGetUser = usermod.exports.default.__proto__.getNonImpersonatedCurrentUser;
-    usermod.exports.default.__proto__.getNonImpersonatedCurrentUser = () => ({ isStaff: () => true });
+    let oldGetUser = usermod.exports.default.__proto__.getCurrentUser;
+    usermod.exports.default.__proto__.getCurrentUser = () => ({ isStaff: () => true });
     nodes.find((x) => x.name == "DeveloperExperimentStore").actionHandler["CONNECTION_OPEN"]();
-    usermod.exports.default.__proto__.getNonImpersonatedCurrentUser = oldGetUser;
+    usermod.exports.default.__proto__.getCurrentUser = oldGetUser;
   }
 
   stop() {
