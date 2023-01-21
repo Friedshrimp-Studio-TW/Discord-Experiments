@@ -7,15 +7,13 @@ assignees:
 body:
   - type: markdown
     attributes:
-      value:
-        Thanks for taking the time to fill out this BUG Report! | 感謝您花時間填寫此BUG報告！
+      value: Thanks for taking the time to fill out this BUG Report! | 感謝您花時間填寫此BUG報告！
   - type: textarea
     id: what-happened
     attributes:
       label: Describe the bug | BUG描述
       description: Please tell me what went wrong | 請告訴我發生什麼錯誤
       placeholder: Describe the bug | BUG描述
-      value: ""
     validations:
       required: true
   - type: input
