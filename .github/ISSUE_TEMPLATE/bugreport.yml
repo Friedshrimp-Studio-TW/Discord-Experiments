@@ -1,1 +1,36 @@
-
+name: Bug Report | Bug回報
+description: Create a BUG Report | 創建BUG回報
+title: "[BUG]: "
+labels: ["bug"]
+assignees:
+  - vincentwang0905
+body:
+  - type: markdown
+    attributes:
+      value:
+        Thanks for taking the time to fill out this BUG Report! | 感謝您花時間填寫此BUG報告！
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Describe the bug | BUG描述
+      description: Please tell me what went wrong | 請告訴我發生什麼錯誤
+      placeholder: Describe the bug | BUG描述
+      value: ""
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version | 版本
+      description: Running Version | 執行的版本
+      placeholder: ex. V1.0.0 | 例. V1.1.0
+    validations:
+      required: true
+  - type: checkboxes
+    id: check
+    attributes:
+      label: Code of Conduct | 行為守則
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I have confirmed that what I have BUG Report has not been reported.\n我已確認我所回報的BUG並沒有被回報過
+          required: true
