@@ -2,7 +2,7 @@
  * @name DiscordExperiments
  * @author VincentX0905(炸蝦)
  * @description Open Discord Experiments function
- * @version V1.1.0
+ * @version V1.2.0
  * @authorId 909608773927202906
  * @donate https://donate.fsbot.tk
  * @invite Pw8z4YkBFB
