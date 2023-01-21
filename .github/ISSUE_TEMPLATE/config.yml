@@ -1,5 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: BUG Report | BUG回報
-    url: https://github.com/vincentwang0905/DiscordExperiments/blob/plugins/.github/ISSUE_TEMPLATE/bugreport.yml
-    about: Create a BUG Report | 創建BUG報告
