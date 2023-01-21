@@ -28,7 +28,7 @@ body:
     id: check
     attributes:
       label: Code of Conduct | 行為守則
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      description: Please follow and confirm | 請次必遵守並確認
       options:
         - label: I have confirmed that what I have BUG Report has not been reported.\n我已確認我所回報的BUG並沒有被回報過
           required: true
