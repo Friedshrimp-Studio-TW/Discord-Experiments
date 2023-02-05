@@ -1,7 +1,7 @@
 name: Bug Report | Bug回報
 description: Create a BUG Report | 創建BUG回報
 title: "[BUG]: "
-labels: ["bug"]
+labels: ["BUG | 錯誤"]
 assignees:
   - vincentwang0905
 body:
