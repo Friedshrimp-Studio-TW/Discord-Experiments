@@ -9,6 +9,9 @@
 ---
 
 <h1 align="center">更新日誌 | Updata log</h1>
+<b>V1.3.0</b> ---> 新增當插件啟動時顯示版本、當插件出現問題時在最上方顯示錯誤訊息與回報按鈕</br>
+<b>V1.3.0</b> ---> Added displaying the version when the plugin starts, and displaying an error message and a report button at the top when there is a problem with the plugin</br>
+</br>
 <b>V1.2.0</b> ---> 修復<a href="https://github.com/Discord-Datamining/Discord-Datamining/commit/fa08ba8f1065c68764573e25b3e4405740989470">Build 168813</a>更新導致插件失效</br>
 <b>V1.2.0</b> ---> Fix<a href="https://github.com/Discord-Datamining/Discord-Datamining/commit/fa08ba8f1065c68764573e25b3e4405740989470">Build 168813</a>update caused the plugin to fail</br>
 </br>
