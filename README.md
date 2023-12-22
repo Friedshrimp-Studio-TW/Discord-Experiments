@@ -7,6 +7,10 @@
 
 > [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.5.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
+
+> 📢 此插件僅為Discord正式版做維護與開發(可在PTB或Canary上使用，但不對除正式版以外版本進行維護或開發)<br>
+> 📢 This plugin is only maintained and developed for the stable version of Discord(Can be used on PTB or Canary, but versions other than the stable version are not maintained or developed)
+
 ---
 
 <h1 align="center">更新日誌 | Updata log</h1>
