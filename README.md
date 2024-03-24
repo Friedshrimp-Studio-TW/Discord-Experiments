@@ -8,8 +8,8 @@
         <img src="https://img.shields.io/discord/1176128602018959371?style=for-the-badge&logo=discord&label=Support"/>
     </a>
 </p>
-<p align="center">加入支援群組後可在<a href="https://canary.discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a>頻道發送訊息詢問<br>
-After joining the support group, you can send a message to inquire on the <a href="https://canary.discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a> channel
+<p align="center">加入支援群組後可在<a href="https://discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a>頻道發送訊息詢問<br>
+After joining the support group, you can send a message to inquire on the <a href="https://discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a> channel
 </p>
 <br><br>
 <h4 align="center">如何下載? 點擊下方插件名稱位置自動跳轉至插件頁面，在該頁面點擊滑鼠右鍵並選擇<b>"另存新檔"</b>選項，<b>檔名請不要更改</b>!</h4>
