@@ -20,12 +20,12 @@
 <b>🔰V1.6.0</b> ---> Added function to check plugin updates</br>
 </br>
 
-<b>V1.5.0</b> ---> 修復插件不起作用</br>
-<b>V1.5.0</b> ---> Fix plugin not working.</br>
+> **V1.5.0** ---> 修復插件不起作用</br>
+> **V1.5.0** ---> Fix plugin not working.</br>
 </br>
 
-<b>V1.4.0</b> ---> 新增啟動插件時顯示您正在使用的版本(中文文字)、修復實驗功能在Discord重新啟動後需重新啟用的問題、新增Discord Devtool功能</br>
-<b>V1.4.0</b> ---> Added display of the version you are using (Chinese text) when starting the plugin, repaired the problem that the experimental function needs to be re-enabled after Discord is started, and added the Discord Devtool function</br>
+> **V1.4.0** ---> 新增啟動插件時顯示您正在使用的版本(中文文字)、修復實驗功能在Discord重新啟動後需重新啟用的問題、新增Discord Devtool功能</br>
+> **V1.4.0** ---> Added display of the version you are using (Chinese text) when starting the plugin, repaired the problem that the experimental function needs to be re-enabled after Discord is started, and added the Discord Devtool function</br>
 </br>
 
 > **V1.3.0** ---> 新增當插件啟動時顯示版本、當插件出現問題時在最上方顯示錯誤訊息與回報按鈕</br>
