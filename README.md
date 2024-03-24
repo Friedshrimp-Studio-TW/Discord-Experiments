@@ -5,7 +5,7 @@
 
 ---
 
-> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.5.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.6.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
 
 > 📢 此插件僅為Discord正式版做維護與開發(可在PTB或Canary上使用，但不對除正式版以外版本進行維護或開發)<br>
@@ -16,8 +16,12 @@
 <h1 align="center">更新日誌 | Updata log</h1>
 <details>
 <summary><u><b>🔰Click to view | 點擊查看</b></u></summary>
-<b>🔰V1.5.0</b> ---> 修復插件不起作用</br>
-<b>🔰V1.5.0</b> ---> Fix plugin not working.</br>
+<b>🔰V1.6.0</b> ---> 新增檢查插件更新功能</br>
+<b>🔰V1.6.0</b> ---> Added function to check plugin updates</br>
+</br>
+
+<b>V1.5.0</b> ---> 修復插件不起作用</br>
+<b>V1.5.0</b> ---> Fix plugin not working.</br>
 </br>
 
 <b>V1.4.0</b> ---> 新增啟動插件時顯示您正在使用的版本(中文文字)、修復實驗功能在Discord重新啟動後需重新啟用的問題、新增Discord Devtool功能</br>
