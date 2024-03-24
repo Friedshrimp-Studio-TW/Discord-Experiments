@@ -1,5 +1,17 @@
 <h1 align="center">BetterDiscord插件 | BetterDiscord Plugin</h1>
 <p align="center"><img src="https://repository-images.githubusercontent.com/579372986/ae676998-34aa-4242-b575-74242a3d31b5" alt="Discord Experiments" /></p>
+<p align="center">
+    <a href="https://github.com/VincentX0905">
+        <img alt="FSBOT擁有者" src="https://img.shields.io/badge/Owner-炸蝦(VincentX0905)-blue.svg?style=for-the-badge&logo=github" />
+    </a>
+    <a href="https://discord.fsbot.xyz" alt="Discord支援群組">
+        <img src="https://img.shields.io/discord/1176128602018959371?style=for-the-badge&logo=discord&label=Support"/>
+    </a>
+</p>
+<p align="center">加入支援群組後可在<a href="https://canary.discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a>頻道發送訊息詢問<br>
+After joining the support group, you can send a message to inquire on the <a href="https://canary.discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a> channel
+</p>
+<br><br>
 <h4 align="center">如何下載? 點擊下方插件名稱位置自動跳轉至插件頁面，在該頁面點擊滑鼠右鍵並選擇<b>"另存新檔"</b>選項，<b>檔名請不要更改</b>!</h4>
 <h4 align="center">How to download? Click the plugin name below to automatically jump to the plugin page, click the right mouse button on this page and select the <b>"Save as new file"</b> option, <b>file name Please do not change</b>!</h4>
 
