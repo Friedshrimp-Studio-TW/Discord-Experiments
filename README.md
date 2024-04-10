@@ -17,7 +17,7 @@ After joining the support group, you can send a message to inquire on the <a hre
 
 ---
 
-> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.6.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.7.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
 
 > 📢 此插件僅為Discord正式版做維護與開發(可在PTB或Canary上使用，但不對除正式版以外版本進行維護或開發)<br>
@@ -28,8 +28,11 @@ After joining the support group, you can send a message to inquire on the <a hre
 <h1 align="center">更新日誌 | Updata log</h1>
 <details>
 <summary><u><b>🔰Click to view | 點擊查看</b></u></summary>
-<b>🔰V1.6.0</b> ---> 新增檢查插件更新功能</br>
-<b>🔰V1.6.0</b> ---> Added function to check plugin updates</br>
+<b>🔰V1.7.0</b> ---> 新增檢查插件i18n功能，延長檢查更新的時間(1 hours)</br>
+<b>🔰V1.7.0</b> ---> Added the function of checking plugin i18n to extend the time for checking for updates(1 hours)</br>
+</br>
+> **V1.6.0** ---> 新增檢查插件更新功能</br>
+> **V1.6.0** ---> Added function to check plugin updates.</br>
 </br>
 
 > **V1.5.0** ---> 修復插件不起作用</br>
