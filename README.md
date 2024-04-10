@@ -31,6 +31,7 @@ After joining the support group, you can send a message to inquire on the <a hre
 <b>🔰V1.7.0</b> ---> 新增檢查插件i18n功能，延長檢查更新的時間(1 hours)</br>
 <b>🔰V1.7.0</b> ---> Added the function of checking plugin i18n to extend the time for checking for updates(1 hours)</br>
 </br>
+
 > **V1.6.0** ---> 新增檢查插件更新功能</br>
 > **V1.6.0** ---> Added function to check plugin updates.</br>
 </br>
