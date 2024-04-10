@@ -2,7 +2,7 @@
  * @name DiscordExperiments
  * @author VincentX0905(炸蝦)
  * @description Open Discord Experiments function | 啟用 Discord 實驗功能
- * @version 1.6.0
+ * @version 1.7.0
  * @authorId 1183208834802667555
  * @donate https://donate.fsbot.xyz
  * @invite myZ7u8pPe9
@@ -11,39 +11,58 @@
  * @updateUrl https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/plugins/DiscordExperiments.plugin.js
  */
 
+function version() {
+  return "1.7.0"
+}
+
+async function lang(key, defaulttext) {
+  try {
+    const response=await fetch(`https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/main/lang/${document.documentElement.lang}.json`);
+    if(!response.ok) {
+      throw new Error('Error: Network Error!');
+    }
+    const data = await response.json();
+    const text = data[key] || defaulttext;
+    return String(text);
+  }
+  catch(error) {
+    console.error('Error:', error);
+    return String(defaulttext);
+  }
+}
+
 function detectVersion() {
-  let checkloop = setInterval(function () {
-    var version = "1.6.0"
-    fetch('https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/main/info/version.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error: Network Error!');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data["version"] != version) {
-        BdApi.showNotice("DiscordExperiments 有新版本: V" + data["version"] +  " | DiscordExperiments has new version: V" + data["version"], {
-          type: "info",
-          buttons: [{
-            label: "前往更新 | Go To Update",
-            onClick: () => window.open("https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/main/DiscordExperiments.plugin.js", "mozillaTab")
-          }]
-        });
-        BdApi.showToast("DiscordExperiments 有新版本: V" + data["version"] +  " | DiscordExperiments has new version: V" + data["version"], {type:"info",icon: true,timeout: 7500,forceShow: true});
-        clearInterval(checkloop);
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }, 1000);
+  var newupdate = false;
+  fetch('https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/main/info/version.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error: Network Error!');
+    }
+    return response.json();
+  })
+  .then(async data => {
+    if (data["version"] != version()) {
+      BdApi.showNotice(await lang("have-update", "A new version of DiscordExperiments is available: V%version%").then(result => result.replace("%version%", data["version"])), {type: "info", buttons: [{label: await lang("gotoupdate-button", "Go To Update"), onClick: () => window.open("https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/main/DiscordExperiments.plugin.js", "mozillaTab")}]});
+      BdApi.showToast(await lang("have-update", "A new version of DiscordExperiments is available: V%version%").then(result => result.replace("%version%", data["version"])), {type:"info",icon: true,timeout: 7500,forceShow: true});
+      newupdate = true;
+    }
+    return newupdate;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    return newupdate;
+  });
 }
 
 module.exports = class discordExperiments {
-    start() {
-      BdApi.showToast("Now you use DiscordExperiments V1.6.0 | 你現在使用 DiscordExperiments V1.6.0", {type:"info",icon: true,timeout: 7500,forceShow: true});
+    async start() {
+      BdApi.showToast(await lang("nowuse", "Now you using DiscordExperiments V%version%").then(result => result.replace("%version%", version())), {type:"info",icon: true,timeout: 7500,forceShow: true});
       detectVersion();
+      var checkupdate = setInterval(function() {
+        if (detectVersion()) {
+          clearInterval(checkupdate);
+        }
+      }, 3600000);
       try {
         let c; webpackChunkdiscord_app.push([[Symbol()],{},r=>c=r.c]); webpackChunkdiscord_app.pop();
         let u = Object.values(c).find(x=>x?.exports?.default?.getUsers).exports.default;
@@ -54,41 +73,13 @@ module.exports = class discordExperiments {
         m.find((x)=>x.name === "ExperimentStore").storeDidChange();
       } catch (err) {
         console.log(err);
-        BdApi.showNotice(
-          "DiscordExperiments 插件錯誤 | DiscordExperiments Plugin error",
-          {
-            type: "error",
-            buttons: [
-              {
-                label: "回報 | Report",
-                onClick: () => window.open("https://github.com/vincentwang0905/DiscordExperiments/issues", "mozillaTab")
-              }
-            ]
-          }
-        );
-        return BdApi.showNotice(
-          `錯誤 | Error: ${err}`,
-          {
-            type: "error",
-            buttons: [
-              {
-                label: "回報 | Report",
-                onClick: () => window.open("https://github.com/vincentwang0905/DiscordExperiments/issues", "mozillaTab")
-              }
-            ]
-          }
-        );
+        BdApi.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        return BdApi.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", err)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
       }
     }
   
-    stop() {
-      BdApi.showNotice("你需要重啟 BD 來關閉 DiscordExperiments | You need to reboot BD for disabling DiscordExperiments", {
-        type: "warning",
-        buttons: [{
-          label: "重啟 BD | Reboot BD",
-          onClick: () => location.reload()
-        }]
-      });
+    async stop() {
+      BdApi.showNotice(await lang("need-reboot", "You need to reboot BetterDiscord for disabling DiscordExperiments"), {type: "warning", buttons: [{label: await lang("reboot-button", "Reboot BetterDiscord"), onClick: () => location.reload()}]});
     }
   }
   
