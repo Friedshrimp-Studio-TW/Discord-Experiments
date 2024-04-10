@@ -1,0 +1,10 @@
+{
+  "nowuse": "你現在正在使用 DiscordExperiments V%version%",
+  "pluginerror": "DiscordExperiments 插件出現錯誤",
+  "pluginerror-button": "回報",
+  "pluginerror-output": "錯誤: %error%",
+  "need-reboot": "你需要重啟 BetterDiscord 來關閉 DiscordExperiments",
+  "reboot-button": "重啟 BetterDiscord",
+  "have-update": "DiscordExperiments 有新版本可用: V%version%",
+  "gotoupdate-button": "前往更新"
+}
