@@ -1,4 +1,5 @@
-<h1 align="center">BetterDiscord插件 | BetterDiscord Plugin</h1>
+<h1 align="center">BetterDiscord Discord 實驗 插件<br>BetterDiscord Discord Experiments Plugin</h1>
+
 <p align="center"><img src="https://repository-images.githubusercontent.com/579372986/ae676998-34aa-4242-b575-74242a3d31b5" alt="Discord Experiments" /></p>
 <p align="center">
     <a href="https://github.com/VincentX0905">
@@ -55,10 +56,10 @@ After joining the support group, you can send a message to inquire on the <a hre
 
 > **V1.1.0** ---> 修復<a href="https://github.com/Discord-Datamining/Discord-Datamining/commit/0e742cceaba535624633bd578f754478a2855cdc">Build 168435</a>更新導致插件失效</br>
 > **V1.1.0** ---> Fix<a href="https://github.com/Discord-Datamining/Discord-Datamining/commit/0e742cceaba535624633bd578f754478a2855cdc">Build 168435</a>update caused the plugin to fail</br>
-
-</br>
-
-> **V1.0.0** ---> 未知</br>
-> **V1.0.0** ---> Unknow
-
 </details>
+
+---
+
+<h1 align="center">協助翻譯 | Assist translation</h1>
+<p>如果您要協助此插件，可以在<a href="https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/tree/main/lang"><b>此處</b></a>找到原始語言檔案，開啟Issues或直接Pull你要翻譯的語言檔案，語言檔案命名方式請參閱<a href="https://discord.com/developers/docs/reference#locales"><b>此處</b></a>，確定語言後查看LOCALE列表命名</p>
+<p>If you would like to contribute to this plugin, the original language archives can be found <a href="https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/tree/main/lang"><b>HERE</b></a>. Open an Issues or directly Pull the language file you want to translate. Please refer to <a href="https://discord.com/developers/docs/reference#locales"><b>HERE</b></a> for the language file naming method. After confirming the language View LOCALE list naming</p>
