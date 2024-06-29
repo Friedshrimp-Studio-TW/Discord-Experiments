@@ -12,16 +12,24 @@
 <p align="center">加入支援群組後可在<a href="https://discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a>頻道發送訊息詢問<br>
 After joining the support group, you can send a message to inquire on the <a href="https://discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a> channel
 </p>
-<br><br>
-<h4 align="center">如何下載? 點擊下方插件名稱位置自動跳轉至插件頁面，在該頁面點擊滑鼠右鍵並選擇<b>"另存新檔"</b>選項，<b>檔名請不要更改</b>!</h4>
-<h4 align="center">How to download? Click the plugin name below to automatically jump to the plugin page, click the right mouse button on this page and select the <b>"Save as new file"</b> option, <b>file name Please do not change</b>!</h4>
 
 ---
+<h1 align="center">如何安裝 | How to install</h1>
 
 > [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.7.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
+<h4>1. 下載 | Download</h4>
 
-> 📢 此插件僅為Discord正式版做維護與開發(可在PTB或Canary上使用，但不對除正式版以外版本進行維護或開發)<br>
+> <p>點擊上方插件名稱位置自動跳轉至插件頁面，在該頁面點擊滑鼠右鍵並選擇<b>"另存新檔"</b>選項，<b>檔名請不要更改</b>!</p>
+> <p>Click the plugin name up to automatically jump to the plugin page, click the right mouse button on this page and select the <b>"Save as new file"</b> option, <b>file name Please do not change</b>!</p>
+
+<h4>2. 安裝 | install</h4>
+
+> <p>前往BetterDiscord，開啟設定找到<b>"擴充功能"</b>，點擊上方<b>"開啟 擴充功能 資料夾"</b>，將下載好的插件移動至資料夾中即可(可能會提示您重啟BetterDiscord)</p>
+> <p>Go to BetterDiscord, open the settings to find the <b>"Plugins"</b>, click "Open Plugins Folder" above, and move the downloaded plugin to the folder (you may be prompted to restart BetterDiscord).</p>
+
+> [!WARNING]
+> 📢 此插件僅為Discord正式版做維護與開發(可在PTB或Canary上使用，但不對除正式版以外版本進行維護或開發)</br>
 > 📢 This plugin is only maintained and developed for the stable version of Discord(Can be used on PTB or Canary, but versions other than the stable version are not maintained or developed)
 
 ---
@@ -63,3 +71,5 @@ After joining the support group, you can send a message to inquire on the <a hre
 <h1 align="center">協助翻譯 | Assist translation</h1>
 <p>如果您要協助此插件，可以在<a href="https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/tree/main/lang"><b>此處</b></a>找到原始語言檔案，開啟Issues或直接Pull你要翻譯的語言檔案，語言檔案命名方式請參閱<a href="https://discord.com/developers/docs/reference#locales"><b>此處</b></a>，確定語言後查看LOCALE列表命名</p>
 <p>If you would like to contribute to this plugin, the original language archives can be found <a href="https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/tree/main/lang"><b>HERE</b></a>. Open an Issues or directly Pull the language file you want to translate. Please refer to <a href="https://discord.com/developers/docs/reference#locales"><b>HERE</b></a> for the language file naming method. After confirming the language View LOCALE list naming</p>
+
+---
