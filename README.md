@@ -16,6 +16,7 @@ After joining the support group, you can send a message to inquire on the <a hre
 ---
 <h1 align="center">如何安裝 | How to install</h1>
 
+> [!NOTE]
 > [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.7.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
 <h4>1. 下載 | Download</h4>
