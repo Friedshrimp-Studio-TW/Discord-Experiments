@@ -8,7 +8,7 @@
  * @invite myZ7u8pPe9
  * @website https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/
  * @source https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/
- * @updateUrl https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/plugins/DiscordExperiments.plugin.js
+ * @updateUrl https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js
  */
 
 function version() {
@@ -38,7 +38,7 @@ function detectVersion() {
   })
   .then(async data => {
     if (data["version"] != version()) {
-      BdApi.UI.showNotice(await lang("have-update", "A new version of DiscordExperiments is available: V%version%").then(result => result.replace("%version%", data["version"])), {type: "info", buttons: [{label: await lang("gotoupdate-button", "Go To Update"), onClick: () => window.open("https://raw.githubusercontent.com/Friedshrimp-Studio-TW/Discord-Experiments/main/DiscordExperiments.plugin.js", "mozillaTab")}]});
+      BdApi.UI.showNotice(await lang("have-update", "A new version of DiscordExperiments is available: V%version%").then(result => result.replace("%version%", data["version"])), {type: "info", buttons: [{label: await lang("gotoupdate-button", "Go To Update"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js", "mozillaTab")}]});
       BdApi.UI.showToast(await lang("have-update", "A new version of DiscordExperiments is available: V%version%").then(result => result.replace("%version%", data["version"])), {type:"info",icon: true,timeout: 7500,forceShow: true});
       newupdate = true;
     }
