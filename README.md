@@ -17,12 +17,12 @@ After joining the support group, you can send a message to inquire on the <a hre
 <h1 align="center">如何安裝 | How to install</h1>
 
 > [!NOTE]
-> [DiscordExperiments.plugin.js](https://raw.githubusercontent.com/vincentwang0905/DiscordExperiments/plugins/DiscordExperiments.plugin.js) V 1.8.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js) V 1.8.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
 <h4>1. 下載 | Download</h4>
 
-> <p>點擊上方插件名稱位置自動跳轉至插件頁面，在該頁面點擊滑鼠右鍵並選擇<b>"另存新檔"</b>選項，<b>檔名請不要更改</b>!</p>
-> <p>Click the plugin name up to automatically jump to the plugin page, click the right mouse button on this page and select the <b>"Save as new file"</b> option, <b>file name Please do not change</b>!</p>
+> <p>點擊上方插件名稱下載，<b>檔名請不要更改</b>!</p>
+> <p>Click on the plugin name above to download, <b>file name Please do not change</b>!</p>
 
 <h4>2. 安裝 | install</h4>
 
