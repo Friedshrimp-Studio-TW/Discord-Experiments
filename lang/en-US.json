@@ -1,10 +1,10 @@
 {
-  "nowuse": "Now you using DiscordExperiments V%version%",
-  "pluginerror": "An error occurred with the DiscordExperiments plugin",
+  "nowuse": "You're using DiscordExperiments V%version%",
+  "pluginerror": "An error has occurred with the DiscordExperiments plugin",
   "pluginerror-button": "Report",
   "pluginerror-output": "Error: %error%",
-  "need-reboot": "You need to reboot BetterDiscord for disabling DiscordExperiments",
+  "need-reboot": "You need to restart BetterDiscord for experiments to be disabled",
   "reboot-button": "Reboot BetterDiscord",
   "have-update": "A new version of DiscordExperiments is available: V%version%",
-  "gotoupdate-button": "Go To Update"
+  "gotoupdate-button": "Go to Update"
 }
