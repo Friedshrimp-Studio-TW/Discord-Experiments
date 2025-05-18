@@ -2,7 +2,7 @@
  * @name DiscordExperiments
  * @author VincentX0905(炸蝦)
  * @description Open Discord Experiments function | 啟用 Discord 實驗功能
- * @version 1.8.0
+ * @version 1.9.0
  * @authorId 1183208834802667555
  * @donate https://donate.fsbot.xyz
  * @invite myZ7u8pPe9
@@ -12,7 +12,7 @@
  */
 
 function version() {
-  return "1.8.0"
+  return "1.9.0"
 }
 
 async function lang(key, defaulttext) {
@@ -56,16 +56,15 @@ module.exports = class discordExperiments {
       detectVersion();
       var checkupdate = setInterval(function() {if (detectVersion()) {clearInterval(checkupdate);}}, 3600000);
       try {
-        let cache;
-        webpackChunkdiscord_app.push([[Symbol()], {}, r => cache = r.c]);
+        let cache = webpackChunkdiscord_app.push([[Symbol()], {}, r => r.c]);
         webpackChunkdiscord_app.pop();
-        let userModule = Object.values(cache).find(mod =>!mod?.exports?.messagesLoader && mod?.exports?.default?.getUsers && mod?.exports?.default?.getCurrentUser).exports.default;
+        let userModule = Object.values(cache).find(x => x?.exports?.default?.__proto__?.getUsers && x?.exports?.default?.getCurrentUser)?.exports?.default;
         let actionHandlers = Object.values(userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
         userModule.getCurrentUser().flags |= 1;
-        const getModule = name => actionHandlers.find(mod => mod.name === name);
-        getModule("DeveloperExperimentStore").actionHandler["CONNECTION_OPEN"]();
-        try {getModule("ExperimentStore").actionHandler["OVERLAY_INITIALIZE"]({ user: { flags: 1 } });} catch {}
-        getModule("ExperimentStore").storeDidChange();
+        const getModule = actionHandlers.find(x => x.name === "DeveloperExperimentStore");
+        getModule?.actionHandler?.["CONNECTION_OPEN"]?.();
+        try {actionHandlers.find(x => x.name === "ExperimentStore").actionHandler?.["OVERLAY_INITIALIZE"]?.({ user: { flags: 1 } })} catch {}
+        actionHandlers.find(x => x.name === "ExperimentStore")?.storeDidChange();
       } catch (error) {
         console.log(error);
         BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
