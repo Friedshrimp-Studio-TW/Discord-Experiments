@@ -17,7 +17,7 @@ After joining the support group, you can send a message to inquire on the <a hre
 <h1 align="center">如何安裝 | How to install</h1>
 
 > [!NOTE]
-> [DiscordExperiments.plugin.js](https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js) V 1.8.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js) V 1.9.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
 <h4>1. 下載 | Download</h4>
 
