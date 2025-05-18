@@ -30,8 +30,8 @@ After joining the support group, you can send a message to inquire on the <a hre
 > <p>Go to BetterDiscord, open the settings to find the <b>"Plugins"</b>, click "Open Plugins Folder" above, and move the downloaded plugin to the folder (you may be prompted to restart BetterDiscord).</p>
 
 > [!WARNING]
-> 📢 此插件僅為Discord正式版做維護與開發(可在PTB或Canary上使用，但不對除正式版以外版本進行維護或開發)</br>
-> 📢 This plugin is only maintained and developed for the stable version of Discord(Can be used on PTB or Canary, but versions other than the stable version are not maintained or developed)
+> 📢 此插件僅為Discord正式版做維護與開發(可在PTB、Canary或Development上使用，但不對除正式版以外版本進行維護或開發)</br>
+> 📢 This plugin is only maintained and developed for the stable version of Discord(Can be used on PTB, Canary or Development, but versions other than the stable version are not maintained or developed)
 
 ---
 
