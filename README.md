@@ -8,6 +8,9 @@
     <a href="https://discord.fsbot.xyz" alt="Discord支援群組">
         <img src="https://img.shields.io/discord/1176128602018959371?style=for-the-badge&logo=discord&label=Support"/>
     </a>
+    <a href="https://www.paypal.com/paypalme/FriedshrimpStudio">
+        <img src="https://img.shields.io/badge/PayPal-003087?style=for-the-badge&logo=paypal"/>
+    </a>
 </p>
 <p align="center">加入支援群組後可在<a href="https://discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a>頻道發送訊息詢問<br>
 After joining the support group, you can send a message to inquire on the <a href="https://discord.com/channels/1176128602018959371/1176128604212572293">#💬｜ｄｃｅｘｐ</a> channel
