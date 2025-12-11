@@ -81,6 +81,7 @@ module.exports = class discordExperiments {
     );
 
     // Version check
+    detectVersion();
     setInterval(() => {
       detectVersion();
     }, 60000);
