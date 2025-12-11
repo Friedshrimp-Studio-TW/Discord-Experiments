@@ -2,7 +2,7 @@
 * @name DiscordExperiments
 * @author VincentX0905(炸蝦)
 * @description Open Discord Experiments function | 啟用 Discord 實驗功能
-* @version 1.9.1
+* @version 1.8.1
 * @authorId 1183208834802667555
 * @donate https://donate.fsbot.xyz
 * @invite myZ7u8pPe9
@@ -12,7 +12,7 @@
 */
 
 function version() {
-  return "1.9.1"
+  return "1.8.1"
 }
 
 async function lang(key, defaulttext) {
@@ -73,9 +73,6 @@ async function detectVersion() {
 }
 
 module.exports = class discordExperiments {
-  constructor() {
-    this.checkUpdateInterval = null;
-  }
 
   async start() {
     // Show toast
@@ -86,9 +83,9 @@ module.exports = class discordExperiments {
 
     // Version check
     detectVersion();
-    checkUpdateInterval =Interval(() => {
+    setInterval(() => {
       detectVersion();
-    }, 60 * 60 * 1000); // check every 60 minutes
+    }, 60 * 60 * 1000); // check every hour
 
     // Get user module
     const cache = webpackChunkdiscord_app.push([[Symbol()], {}, r => r.c]);
@@ -150,11 +147,6 @@ module.exports = class discordExperiments {
     devExpStore?.storeDidChange();
 
     BdApi.UI.showToast("DiscordExperiments disabled — menu hidden.", { type: "info" });
-
-    if (this.checkUpdateInterval) {
-      clearInterval(this.checkUpdateInterval);
-      this.checkUpdateInterval = null;
-    }
   }
 
   ensureExperiments() {
