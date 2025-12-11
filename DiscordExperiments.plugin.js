@@ -83,7 +83,7 @@ module.exports = class discordExperiments {
 
     // Version check
     detectVersion();
-    setInterval(() => {
+    this._versionInterval = setInterval(() => {
       detectVersion();
     }, 60 * 60 * 1000); // check every hour
 
@@ -124,6 +124,12 @@ module.exports = class discordExperiments {
   }
 
   stop() {
+    // Clear version-check interval if set
+    if (this._versionInterval) {
+      clearInterval(this._versionInterval);
+      this._versionInterval = null;
+    }
+
     if (!this.userModule || this.originalFlags == null) return;
 
     // Restore original getter
