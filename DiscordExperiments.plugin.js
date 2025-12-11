@@ -81,7 +81,9 @@ module.exports = class discordExperiments {
     );
 
     // Version check
-    await detectVersion();
+    setInterval(() => {
+      detectVersion();
+    }, 60000);
 
     // Get user module
     const cache = webpackChunkdiscord_app.push([[Symbol()], {}, r => r.c]);
