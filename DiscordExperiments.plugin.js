@@ -69,7 +69,7 @@ async function detectVersion() {
   } catch (e) {
     console.error("Error checking version:", e);
         BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
-        BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", error)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});    return false;
+        BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});    return false;
   }
 }
 
@@ -185,7 +185,7 @@ module.exports = class discordExperiments {
       expStore?.storeDidChange();
     } catch (e) { console.error(e); 
         BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
-        return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", error)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
+        return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
     }
     finally {
       setTimeout(() => this._ensuring = false, 100); // allow next run after 100ms
