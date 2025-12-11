@@ -2,7 +2,7 @@
 * @name DiscordExperiments
 * @author VincentX0905(炸蝦)
 * @description Open Discord Experiments function | 啟用 Discord 實驗功能
-* @version 1.8.1
+* @version 1.9.1
 * @authorId 1183208834802667555
 * @donate https://donate.fsbot.xyz
 * @invite myZ7u8pPe9
@@ -12,7 +12,7 @@
 */
 
 function version() {
-  return "1.8.1"
+  return "1.9.1"
 }
 
 async function lang(key, defaulttext) {
