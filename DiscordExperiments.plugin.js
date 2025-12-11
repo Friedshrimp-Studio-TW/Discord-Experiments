@@ -68,94 +68,107 @@ async function detectVersion() {
     return false;
   } catch (e) {
     console.error("Error checking version:", e);
-    return false;
+        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", error)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});    return false;
   }
 }
 
 module.exports = class discordExperiments {
 
   async start() {
-    // Show toast
-    BdApi.UI.showToast(
-      await lang("nowuse", "Now using DiscordExperiments V%version%").then(r => r.replace("%version%", version())),
-      { type: "info", icon: true, timeout: 7500, forceShow: true }
-    );
+    try {
+      // Show toast
+      BdApi.UI.showToast(
+        await lang("nowuse", "Now using DiscordExperiments V%version%").then(r => r.replace("%version%", version())),
+        { type: "info", icon: true, timeout: 7500, forceShow: true }
+      );
 
-    // Version check
-    detectVersion();
-    this._versionInterval = setInterval(() => {
+      // Version check
       detectVersion();
-    }, 60 * 60 * 1000); // check every hour
+      this._versionInterval = setInterval(() => {
+        detectVersion();
+      }, 60 * 60 * 1000); // check every hour
 
-    // Get user module
-    const cache = webpackChunkdiscord_app.push([[Symbol()], {}, r => r.c]);
-    webpackChunkdiscord_app.pop();
-    const userModule = Object.values(cache).find(
-      x => x?.exports?.default?.__proto__?.getUsers && x?.exports?.default?.getCurrentUser
-    )?.exports?.default;
+      // Get user module
+      const cache = webpackChunkdiscord_app.push([[Symbol()], {}, r => r.c]);
+      webpackChunkdiscord_app.pop();
+      const userModule = Object.values(cache).find(
+        x => x?.exports?.default?.__proto__?.getUsers && x?.exports?.default?.getCurrentUser
+      )?.exports?.default;
 
-    if (!userModule) return;
-    this.userModule = userModule;
-    this.originalFlags = userModule.getCurrentUser().flags;
+      if (!userModule) return;
+      this.userModule = userModule;
+      this.originalFlags = userModule.getCurrentUser().flags;
 
-    // Patch getCurrentUser for self-healing
-    const originalGetter = userModule.getCurrentUser.bind(userModule);
-    this._unpatchGetter = () => userModule.getCurrentUser = originalGetter;
+      // Patch getCurrentUser for self-healing
+      const originalGetter = userModule.getCurrentUser.bind(userModule);
+      this._unpatchGetter = () => userModule.getCurrentUser = originalGetter;
 
-    userModule.getCurrentUser = () => {
-      const user = originalGetter();
-      if (!(user.flags & 1)) this.ensureExperiments();
-      return user;
-    };
+      userModule.getCurrentUser = () => {
+        const user = originalGetter();
+        if (!(user.flags & 1)) this.ensureExperiments();
+        return user;
+      };
 
-    // Patch storeDidChange for self-healing menu
-    const nodes = Object.values(userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
-    const expStore = nodes.find(h => h.name === "ExperimentStore");
-    const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
+      // Patch storeDidChange for self-healing menu
+      const nodes = Object.values(userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
+      const expStore = nodes.find(h => h.name === "ExperimentStore");
+      const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
 
-    this._originalExpStoreDidChange = expStore?.storeDidChange?.bind(expStore);
-    this._originalDevExpDidChange = devExpStore?.storeDidChange?.bind(devExpStore);
+      this._originalExpStoreDidChange = expStore?.storeDidChange?.bind(expStore);
+      this._originalDevExpDidChange = devExpStore?.storeDidChange?.bind(devExpStore);
 
-    if (expStore) expStore.storeDidChange = () => { this.ensureExperiments(); this._originalExpStoreDidChange?.(); };
-    if (devExpStore) devExpStore.storeDidChange = () => { this.ensureExperiments(); this._originalDevExpDidChange?.(); };
+      if (expStore) expStore.storeDidChange = () => { this.ensureExperiments(); this._originalExpStoreDidChange?.(); };
+      if (devExpStore) devExpStore.storeDidChange = () => { this.ensureExperiments(); this._originalDevExpDidChange?.(); };
 
-    // Ensure menu immediately
-    this.ensureExperiments();
-  }
-
-  stop() {
-    // Clear version-check interval if set
-    if (this._versionInterval) {
-      clearInterval(this._versionInterval);
-      this._versionInterval = null;
+      // Ensure menu immediately
+      this.ensureExperiments();
+    } catch (e) {
+      console.error('Error in start():', e);
+        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
     }
-
-    if (!this.userModule || this.originalFlags == null) return;
-
-    // Restore original getter
-    if (this._unpatchGetter) this._unpatchGetter();
-
-    // Restore flags
-    const user = this.userModule.getCurrentUser();
-    user.flags = this.originalFlags;
-
-    // Restore original storeDidChange methods
-    const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
-    const expStore = nodes.find(h => h.name === "ExperimentStore");
-    const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
-
-    if (expStore && this._originalExpStoreDidChange) expStore.storeDidChange = this._originalExpStoreDidChange;
-    if (devExpStore && this._originalDevExpDidChange) devExpStore.storeDidChange = this._originalDevExpDidChange;
-
-    // Trigger updates to hide menu
-    devExpStore?.actionHandler?.["CONNECTION_OPEN"]?.({ user: { flags: this.originalFlags } });
-    expStore?.storeDidChange();
-    devExpStore?.storeDidChange();
-
-    BdApi.UI.showToast("DiscordExperiments disabled — menu hidden.", { type: "info" });
   }
 
-  ensureExperiments() {
+  async stop() {
+    try {
+      // Clear version-check interval if set
+      if (this._versionInterval) {
+        clearInterval(this._versionInterval);
+        this._versionInterval = null;
+      }
+
+      if (!this.userModule || this.originalFlags == null) return;
+
+      // Restore original getter
+      if (this._unpatchGetter) this._unpatchGetter();
+
+      // Restore flags
+      const user = this.userModule.getCurrentUser();
+      user.flags = this.originalFlags;
+
+      // Restore original storeDidChange methods
+      const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
+      const expStore = nodes.find(h => h.name === "ExperimentStore");
+      const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
+
+      if (expStore && this._originalExpStoreDidChange) expStore.storeDidChange = this._originalExpStoreDidChange;
+      if (devExpStore && this._originalDevExpDidChange) devExpStore.storeDidChange = this._originalDevExpDidChange;
+
+      // Trigger updates to hide menu
+      devExpStore?.actionHandler?.["CONNECTION_OPEN"]?.({ user: { flags: this.originalFlags } });
+      expStore?.storeDidChange();
+      devExpStore?.storeDidChange();
+
+      BdApi.UI.showToast("DiscordExperiments disabled — menu hidden.", { type: "info" });
+    } catch (e) {
+      console.error('Error in stop():', e);
+      BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+      return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
+    }
+  }
+
+  async ensureExperiments() {
     if (this._ensuring) return; // throttle to avoid lag
     this._ensuring = true;
 
@@ -170,7 +183,10 @@ module.exports = class discordExperiments {
       const expStore = nodes.find(h => h.name === "ExperimentStore");
       try { expStore?.actionHandler?.["OVERLAY_INITIALIZE"]?.({ user: { flags: 1 } }); } catch {}
       expStore?.storeDidChange();
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error(e); 
+        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", error)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
+    }
     finally {
       setTimeout(() => this._ensuring = false, 100); // allow next run after 100ms
     }
