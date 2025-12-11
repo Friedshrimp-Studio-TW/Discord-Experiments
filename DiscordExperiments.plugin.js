@@ -73,6 +73,10 @@ async function detectVersion() {
 }
 
 module.exports = class discordExperiments {
+  constructor() {
+    this.checkUpdateInterval = null;
+  }
+
   async start() {
     // Show toast
     BdApi.UI.showToast(
@@ -82,9 +86,9 @@ module.exports = class discordExperiments {
 
     // Version check
     detectVersion();
-    setInterval(() => {
+    checkUpdateInterval =Interval(() => {
       detectVersion();
-    }, 60000);
+    }, 60 * 60 * 1000); // check every 60 minutes
 
     // Get user module
     const cache = webpackChunkdiscord_app.push([[Symbol()], {}, r => r.c]);
@@ -146,6 +150,11 @@ module.exports = class discordExperiments {
     devExpStore?.storeDidChange();
 
     BdApi.UI.showToast("DiscordExperiments disabled — menu hidden.", { type: "info" });
+
+    if (this.checkUpdateInterval) {
+      clearInterval(this.checkUpdateInterval);
+      this.checkUpdateInterval = null;
+    }
   }
 
   ensureExperiments() {
