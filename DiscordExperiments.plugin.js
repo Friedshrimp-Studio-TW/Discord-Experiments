@@ -106,7 +106,7 @@ module.exports = class discordExperiments {
 
       userModule.getCurrentUser = () => {
         const user = originalGetter();
-        if (!(user.flags & 1)) this.ensureExperiments();
+        if (user && !(user.flags & 1)) this.ensureExperiments();
         return user;
       };
 
@@ -145,7 +145,7 @@ module.exports = class discordExperiments {
 
       // Restore flags
       const user = this.userModule.getCurrentUser();
-      user.flags = this.originalFlags;
+      if (user) user.flags = this.originalFlags;
 
       // Restore original storeDidChange methods
       const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
@@ -174,6 +174,7 @@ module.exports = class discordExperiments {
 
     try {
       const user = this.userModule.getCurrentUser();
+      if (!user) return; // nothing to do if no user (e.g., logging out)
       if (user.flags & 1) return; // nothing to do
       console.log("[DiscordExperiments] ensureExperiments triggered — restoring dev flag");
       user.flags |= 1;
