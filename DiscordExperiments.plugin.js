@@ -2,7 +2,7 @@
 * @name DiscordExperiments
 * @author VincentX0905(炸蝦)
 * @description Open Discord Experiments function | 啟用 Discord 實驗功能
-* @version 1.9.1
+* @version 1.9.2
 * @authorId 1183208834802667555
 * @donate https://donate.fsbot.xyz
 * @invite myZ7u8pPe9
@@ -12,7 +12,7 @@
 */
 
 function version() {
-  return "1.9.1"
+  return "1.9.2"
 }
 
 async function lang(key, defaulttext) {
@@ -68,7 +68,7 @@ async function detectVersion() {
     return false;
   } catch (e) {
     console.error("Error checking version:", e);
-        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin"), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
         BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});    return false;
   }
 }
@@ -111,7 +111,7 @@ module.exports = class discordExperiments {
       };
 
       // Patch storeDidChange for self-healing menu
-      const nodes = Object.values(userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
+      const nodes = Array.from(userModule._dispatcher._actionHandlers._nodes.values());
       const expStore = nodes.find(h => h.name === "ExperimentStore");
       const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
 
@@ -125,7 +125,7 @@ module.exports = class discordExperiments {
       this.ensureExperiments();
     } catch (e) {
       console.error('Error in start():', e);
-        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin"), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
         return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
     }
   }
@@ -148,7 +148,7 @@ module.exports = class discordExperiments {
       if (user) user.flags = this.originalFlags;
 
       // Restore original storeDidChange methods
-      const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
+      const nodes = Array.from(this.userModule._dispatcher._actionHandlers._nodes.values());
       const expStore = nodes.find(h => h.name === "ExperimentStore");
       const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
 
@@ -163,7 +163,7 @@ module.exports = class discordExperiments {
       BdApi.UI.showToast("DiscordExperiments disabled — menu hidden.", { type: "info" });
     } catch (e) {
       console.error('Error in stop():', e);
-      BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+      BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin"), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
       return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
     }
   }
@@ -179,13 +179,13 @@ module.exports = class discordExperiments {
       console.log("[DiscordExperiments] ensureExperiments triggered — restoring dev flag");
       user.flags |= 1;
 
-      const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
+      const nodes = Array.from(this.userModule._dispatcher._actionHandlers._nodes.values());
       nodes.find(h => h.name === "DeveloperExperimentStore")?.actionHandler?.["CONNECTION_OPEN"]?.();
       const expStore = nodes.find(h => h.name === "ExperimentStore");
       try { expStore?.actionHandler?.["OVERLAY_INITIALIZE"]?.({ user: { flags: 1 } }); } catch {}
       expStore?.storeDidChange();
     } catch (e) { console.error(e); 
-        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
+        BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin"), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
         return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
     }
     finally {
