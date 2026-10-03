@@ -2,17 +2,25 @@
 * @name DiscordExperiments
 * @author VincentX0905(炸蝦)
 * @description Open Discord Experiments function | 啟用 Discord 實驗功能
-* @version 1.9.1
+* @version 1.9.2
 * @authorId 1183208834802667555
 * @donate https://donate.fsbot.xyz
 * @invite myZ7u8pPe9
 * @website https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/
 * @source https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/
 * @updateUrl https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js
+*
+* 1.9.2 - Fix the crash on Discord 1.0.9260. The plugin read
+* `_actionHandlers._dependencyGraph.nodes`, but that field is gone: the table moved to
+* `_actionHandlers._nodes`, a Map keyed by dispatch token, so the read threw
+* `TypeError: Cannot read properties of undefined (reading 'nodes')`. Stores are also
+* frozen on 1.0.9260, so the old `storeDidChange` self-heal can no longer be installed;
+* the gate is now opened by invoking the store's own registered
+* `actionHandler.CURRENT_USER_UPDATE` after the dev flag is set.
 */
 
 function version() {
-  return "1.9.1"
+  return "1.9.2"
 }
 
 async function lang(key, defaulttext) {
@@ -110,18 +118,8 @@ module.exports = class discordExperiments {
         return user;
       };
 
-      // Patch storeDidChange for self-healing menu
-      const nodes = Object.values(userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
-      const expStore = nodes.find(h => h.name === "ExperimentStore");
-      const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
-
-      this._originalExpStoreDidChange = expStore?.storeDidChange?.bind(expStore);
-      this._originalDevExpDidChange = devExpStore?.storeDidChange?.bind(devExpStore);
-
-      if (expStore) expStore.storeDidChange = () => { this.ensureExperiments(); this._originalExpStoreDidChange?.(); };
-      if (devExpStore) devExpStore.storeDidChange = () => { this.ensureExperiments(); this._originalDevExpDidChange?.(); };
-
-      // Ensure menu immediately
+      // Open the gate. The store is frozen, so its own handler is what recomputes
+      // `isDeveloper`; see dispatchStoreUpdate().
       this.ensureExperiments();
     } catch (e) {
       console.error('Error in start():', e);
@@ -138,6 +136,11 @@ module.exports = class discordExperiments {
         this._versionInterval = null;
       }
 
+      if (this._retryTimer) {
+        clearInterval(this._retryTimer);
+        this._retryTimer = null;
+      }
+
       if (!this.userModule || this.originalFlags == null) return;
 
       // Restore original getter
@@ -147,18 +150,9 @@ module.exports = class discordExperiments {
       const user = this.userModule.getCurrentUser();
       if (user) user.flags = this.originalFlags;
 
-      // Restore original storeDidChange methods
-      const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
-      const expStore = nodes.find(h => h.name === "ExperimentStore");
-      const devExpStore = nodes.find(h => h.name === "DeveloperExperimentStore");
-
-      if (expStore && this._originalExpStoreDidChange) expStore.storeDidChange = this._originalExpStoreDidChange;
-      if (devExpStore && this._originalDevExpDidChange) devExpStore.storeDidChange = this._originalDevExpDidChange;
-
-      // Trigger updates to hide menu
-      devExpStore?.actionHandler?.["CONNECTION_OPEN"]?.({ user: { flags: this.originalFlags } });
-      expStore?.storeDidChange();
-      devExpStore?.storeDidChange();
+      // Recompute the gate from the restored flags. The store object itself was
+      // never modified (it is frozen), so there is nothing to restore on it.
+      this.dispatchStoreUpdate();
 
       BdApi.UI.showToast("DiscordExperiments disabled — menu hidden.", { type: "info" });
     } catch (e) {
@@ -168,6 +162,74 @@ module.exports = class discordExperiments {
     }
   }
 
+  /**
+   * The experiments gate is a single check: the Developer settings section has
+   * `usePredicate: () => DeveloperExperimentStore.isDeveloper`. That property
+   * is a non-configurable getter on an object that is then `Object.freeze`d, so
+   * it cannot be redefined, assigned, or reached via the prototype chain - the
+   * only way to change it is to let the store recompute it.
+   *
+   * A name-based lookup is used on purpose: `getByStrings` returns null for
+   * this store without throwing, which is a silent failure.
+   */
+  getDevStore() {
+    try {
+      return BdApi.Webpack.Stores.DeveloperExperimentStore ?? null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * 1.0.9260 removed `_actionHandlers._dependencyGraph`. Registrations now live
+   * in `_actionHandlers._nodes`, a Map keyed by each subscriber's
+   * `_dispatchToken`; the matching record's `actionHandler` holds that
+   * subscriber's own handlers (CONNECTION_OPEN, OVERLAY_INITIALIZE,
+   * CURRENT_USER_UPDATE) as plain functions.
+   */
+  getActionHandler(store) {
+    const nodes = store?._dispatcher?._actionHandlers?._nodes;
+    if (!(nodes instanceof Map)) return null;
+    return nodes.get(store._dispatchToken)?.actionHandler ?? null;
+  }
+
+  /**
+   * Ask the store to recompute `isDeveloper`, then emit the change so the
+   * settings UI re-renders. Returns true when the gate ends up open.
+   *
+   * Nothing is faked: the store's own recompute function runs against the real
+   * current user, which `start()` has already given the developer flag.
+   */
+  dispatchStoreUpdate() {
+    const store = this.getDevStore();
+    if (!store) return false;
+
+    try {
+      this.getActionHandler(store)?.CURRENT_USER_UPDATE?.({ type: "CURRENT_USER_UPDATE" });
+      store._dispatcher?.doEmitChanges?.();
+    } catch (e) {
+      console.error('Error recomputing isDeveloper:', e);
+    }
+
+    return store.isDeveloper === true;
+  }
+
+  /**
+   * The Flux handler is not always registered yet when start() runs, so retry
+   * for a bounded while. Bounded on purpose: an account whose gate cannot be
+   * opened should not keep polling forever.
+   */
+  scheduleRetry() {
+    if (this._retryTimer) return;
+    let attempts = 0;
+    this._retryTimer = setInterval(() => {
+      if (this.dispatchStoreUpdate() || ++attempts >= 20) {
+        clearInterval(this._retryTimer);
+        this._retryTimer = null;
+      }
+    }, 2500);
+  }
+
   async ensureExperiments() {
     if (this._ensuring) return; // throttle to avoid lag
     this._ensuring = true;
@@ -175,15 +237,16 @@ module.exports = class discordExperiments {
     try {
       const user = this.userModule.getCurrentUser();
       if (!user) return; // nothing to do if no user (e.g., logging out)
-      if (user.flags & 1) return; // nothing to do
-      console.log("[DiscordExperiments] ensureExperiments triggered — restoring dev flag");
-      user.flags |= 1;
+      if (!(user.flags & 1)) {
+        console.log("[DiscordExperiments] ensureExperiments triggered — restoring dev flag");
+        user.flags |= 1;
+      }
 
-      const nodes = Object.values(this.userModule._dispatcher._actionHandlers._dependencyGraph.nodes);
-      nodes.find(h => h.name === "DeveloperExperimentStore")?.actionHandler?.["CONNECTION_OPEN"]?.();
-      const expStore = nodes.find(h => h.name === "ExperimentStore");
-      try { expStore?.actionHandler?.["OVERLAY_INITIALIZE"]?.({ user: { flags: 1 } }); } catch {}
-      expStore?.storeDidChange();
+      // `CURRENT_USER_UPDATE` is one of the three events the store listens to in
+      // order to recompute `isDeveloper` (the others are CONNECTION_OPEN and
+      // OVERLAY_INITIALIZE). Going through the dispatcher does not reach the
+      // handler, so the handler is invoked directly instead.
+      if (!this.dispatchStoreUpdate()) this.scheduleRetry();
     } catch (e) { console.error(e); 
         BdApi.UI.showNotice(await lang("pluginerror", "An error occurred with the DiscordExperiments plugin")), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]};
         return BdApi.UI.showNotice(await lang("pluginerror-output", "Error: %error%").then(result => result.replace("%error%", e)), {type: "error", buttons: [{label: await lang("pluginerror-button", "Report"), onClick: () => window.open("https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/issues", "mozillaTab")}]});
