@@ -3,9 +3,9 @@
 <p align="center"><img src="https://repository-images.githubusercontent.com/579372986/ae676998-34aa-4242-b575-74242a3d31b5" alt="Discord Experiments" /></p>
 <p align="center">
     <a href="https://github.com/VincentX0905">
-        <img alt="FSBOT擁有者" src="https://img.shields.io/badge/Owner-炸蝦(VincentX0905)-blue.svg?style=for-the-badge&logo=github" />
+        <img alt="擁有者Owner" src="https://img.shields.io/badge/Owner-炸蝦(VincentX0905)-blue.svg?style=for-the-badge&logo=github" />
     </a>
-    <a href="https://discord.fsbot.xyz" alt="Discord支援群組">
+    <a href="https://discord.fsbot.xyz" alt="Discord Support支援群組">
         <img src="https://img.shields.io/discord/1176128602018959371?style=for-the-badge&logo=discord&label=Support"/>
     </a>
     <a href="https://www.paypal.com/paypalme/FriedshrimpStudio">
@@ -20,7 +20,7 @@ After joining the support group, you can send a message to inquire on the <a hre
 <h1 align="center">如何安裝 | How to install</h1>
 
 > [!NOTE]
-> [DiscordExperiments.plugin.js](https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js) V 1.9.0 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
+> [DiscordExperiments.plugin.js](https://github.com/Friedshrimp-Studio-TW/Discord-Experiments/releases/latest/download/DiscordExperiments.plugin.js) V 1.9.2 - By. VincentX0905</br>啟用Discord實驗性功能 | Open Discord Experiments function
 
 <h4>1. 下載 | Download</h4>
 
